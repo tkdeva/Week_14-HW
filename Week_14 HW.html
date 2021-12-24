@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<p><img id = "die1" src = "dice1.png" width = "100"  alt = "blank image">
+		<img id = "die2" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die3" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die4" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die5" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die6" src = "dice1.png" width = "100" alt = "blank image"></p>
+	<p><img id = "die7" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die8" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die9" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die10" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die11" src = "dice1.png" width = "100" alt = "blank image">
+		<img id = "die12" src = "dice1.png" width = "100" alt = "blank image"></p>
+
+	<form action = "#">
+		<input id = "rollButton" type = "button" value = "Roll Dice">
+	</form>
+	<div id = "frequencyTableDiv"></div>	
+
+
+	<script>
+	window.addEventListener("load", start ) ;	
+
+	var dice1img ;
+	var dice2img ;
+	var dice3img ;
+	var dice4img ;
+	var dice5img ;
+	var dice6img ;
+	var dice7img ;
+	var dice8img ;
+	var dice9img ;
+	var dice10img ;
+	var dice11img ;
+	var dice12img ;
+
+	function start(){
+		var button = document.getElementById("rollButton");
+		button.addEventListener("click", rolldice );
+		dice1img = document.getElementById("die1");
+		dice2img = document.getElementById("die2");
+		dice3img = document.getElementById("die3");
+		dice4img = document.getElementById("die4");
+		dice5img = document.getElementById("die5");
+		dice6img = document.getElementById("die6");
+		dice7img = document.getElementById("die7");
+		dice8img = document.getElementById("die8");
+		dice9img = document.getElementById("die9");
+		dice10img = document.getElementById("die10");
+		dice11img = document.getElementById("die11");
+		dice12img = document.getElementById("die12");
+	
+	}
+
+	function rolldice() {
+
+		var face ;
+		for ( var i = 1 ; i <= 12 ; ++i ){
+			face = Math.floor( 1 + Math.random()*6 ) ;
+			setImage ( i, face) ;
+			tallyRolls( face ) ;
+			++ totalDice ;
+		}
+		
+		updateFrequencyTable() ;
+	}
+
+	function tallyRolls ( face ){
+
+		switch (face) {
+			case 1:
+				++ frequency1 ;
+				break ;
+			case 2:
+				++ frequency2 ;
+				break ;
+			case 3:
+				++ frequency3 ;
+				break ;
+			case 4:
+				++ frequency4 ;
+				break ;
+			case 5:
+				++ frequency5 ;
+				break ;
+			case 6:
+				++ frequency6 ;
+				break ;
+		}
+	}
+
+	function updateFrequencyTable(){
+
+		var tableDiv = document.getElementById ( "FrequencyTableDiv" ) ;
+
+		tableDiv.innerHTML = "<table>" + 
+							 "<caption> Die Rolling Frequencies </caption>" + "<thead> <th> Face </th> <th> Frequency </th> " + "<th> Percent </th> </thead> "
+							 "<tbody><tr><td> 1 </td> <td>" + frequency1 + "</td> <td>" + Math.floor((frequency1/totalDice)*100) +"%" + "</td> </tr>"
+							 		"<tr><td> 2 </td> <td>" + frequency2 + "</td> <td>" + Math.floor((frequency1/totalDice)*100) +"%" + "</td> </tr>"
+							 		"<tr><td> 3 </td> <td>" + frequency3 + "</td> <td>" + Math.floor((frequency1/totalDice)*100) +"%" + "</td> </tr>"
+							 		"<tr><td> 4 </td> <td>" + frequency4 + "</td> <td>" + Math.floor((frequency1/totalDice)*100) +"%" + "</td> </tr>"
+							 		"<tr><td> 5 </td> <td>" + frequency5 + "</td> <td>" + Math.floor((frequency1/totalDice)*100) +"%" + "</td> </tr>"
+							 		"<tr><td> 6 </td> <td>" + frequency6 + "</td> <td>" + Math.floor((frequency1/totalDice)*100) +"%" + "</td> </tr>"
+							 "</tbody> </body>" ;
+	}
+
+
+	function setImage( dieNumber, face ){
+		var dicevalue = Math.floor( 1+ Math.random() * 6) ;
+		dieimg.setAttribute("src", "dice" + dicevalue + ".png") ;
+		dieimg.setAttribute("alt", "dice image with" + dicevalue + "spot(s)") ;
+	}
+
+	</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
